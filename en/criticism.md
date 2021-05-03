@@ -1,58 +1,55 @@
-# Criticism
+# Crítica
 
-## UDP will never work
+## UDP nunca vai funcionar
 
-A lot of enterprises, operators and organizations block or rate-limit UDP
-traffic outside of port 53 (used for DNS) since it has in recent days mostly
-been abused for attacks. In particular, some of the existing UDP protocols and
-popular server implementations for them have been vulnerable for amplification
-attacks where one attacker can make a huge amount of outgoing traffic to
-target innocent victims.
+Diversas empresas, operadores e organizações bloqueiam ou limitam a taxa de
+tráfego do UDP para fora da porta 53 (usada para DNS) já que nos últimos dias
+tem sido usado principalmente para ataques. Em particular, alguns protocolos
+UDP e populares servers dele têm sido vulneráveis a ataques de amplificação 
+em que um invasor pode fazer uma grande quantidade de tráfego para atingir vítimas inocentes.
 
-QUIC has built-in mitigation against amplification attacks by requiring that the
-initial packet must be at least 1200 bytes and by restriction in the protocol
-that says that a server must not send more than three times the size of the
-request in response without receiving a packet from the client in response.
+QUIC tem mitigação embutida contra-ataques de amplificação por requerer um pacote
+inicial que precisa ter pelo menos 1200 bytes e por restringir no protocolo que
+diz que o servidor não pode mandar mais de três vezes o tamanho da request na resposta
+sem receber um pacote do cliente.
 
-## UDP is slow in kernels
+## UDP é lento em kernels
 
-This seems to be the truth, at least initially. We can of course not tell
-how this will develop and how much of this is simply the result of UDP
-transfer performance not having been in developers' focus for many years.
+Isso parece ser verdade, pelo menos inicialmente. Nós não podemos dizer como
+isso se desenvolverá e quanto isso é simplesmente o resultado do desempenho de transferência 
+não ter estado no foco dos desenvolvedores por muitos anos.
 
-For most clients, this "slowness" is probably never even noticeable.
+Para a maioria dos clientes, essa 'lentidão' provavelmente nunca é percetível.
 
-## QUIC takes too much CPU
+## QUIC consume muito CPU
 
-Similar to the "UDP is slow" remark above, this is partly because the TCP and
-TLS usage of the world has had a longer time to mature, improve and get
-hardware assistance.
+Similar a observação acima 'UDP é lento', isso ocorre em parte porque o uso do TCP 
+e do TLS no mundo teve mais tempo para amadurecer, melhorar e obter assistência de hardware.
 
-There are reasons to expect this to improve over time, and already [we are seeing
-some improvements in this space](https://www.fastly.com/blog/measuring-quic-vs-tcp-computational-efficiency).
-The question is how much this extra CPU usage will hurt deployers.
+Existem razões para esperar que isso melhore com o tempo, e já [estamos vendo algumas
+melhorias nesse espaço](https://www.fastly.com/blog/measuring-quic-vs-tcp-computational-efficiency).
+A questão sobre o quanto de uso de CPU extra irá machucar deployers.
 
-## This is just Google
+## Isso é apenas o Google
 
-No it is not. Google brought the initial spec to the IETF after having proved,
-on a large Internet-wide scale, that deploying this style of protocol over UDP
-actually works and performs well.
+Não, não é. O Google trouxe a especificação inicial para o IETF (Internet Engineering Task Force)
+após provar, em larga escala, que implantar esse estilo de protocolo sobre o UDP
+funciona e tem um bom desempenho bem.
 
-Since then, individuals from a large number of companies and organizations
-have worked in the vendor-neutral organization IETF to put together a standard
-transport protocol out of it. In that work, Google employees have of course
-been participating, but so have employees from a large number of other
-companies that are interested in furthering the state of transport protocols
-on the Internet, including Mozilla, Fastly, Cloudflare, Akamai, Microsoft,
-Facebook and Apple.
+Desde então, indivíduos de um grande número de empresas e organizações tem trabalhado
+com a IETF para montar um protocolo de transporte padrão a partir dele. Nesse trabalho,
+funcionários do google, é claro, tem participado, mas também funcionarios de um grande 
+número de outras empresas que estão interessadas em promover o estado dos protocolos de
+transporte na Internet, como Mozilla, Fastly, Cloudflare, Akamai, Microsoft, Facebook e Apple.
 
-## This is too small of an improvement
 
-That is not really a critique but an opinion. Maybe it is, and maybe it is too
-little of an improvement so close in time since HTTP/2 was shipped.
+## Esta é uma melhoria muito pequena
 
-HTTP/3 is likely to perform much better in packet loss-ridden networks, it
-offers faster handshakes so it will improve latency both as perceived and
-actual. But is that enough of benefits to motivate people to deploy HTTP/3
-support on their servers and for their services? Time and future performance
-measurements will surely tell!
+Isso não é realmente uma critica, mas uma opinião. Talvez seja, e talvez seja
+uma melhoria muito pequena tão próxima no tempo desde que o HTTP2 foi lançado.
+
+HTTP/3 é provável que tenha um desempenho muito melhor em redes movidas a perda de pacotes,
+ele oferece handshakes mais rapidos, então isso irá melhorar a latencia percebida e real.
+Mas isso é beneficios suficientes para motivar pessoas a implementarem o HTTP/3
+nos seus servidores e nos seus serviços? Tempo e as medições de desempenho futuro irão
+com certeza dizer!
