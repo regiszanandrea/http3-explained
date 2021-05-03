@@ -1,8 +1,8 @@
-# Protocol features
+# Recursos do protocolo
 
-The QUIC protocol from a high level.
+O protocolo QUIC de um nivel mais abstrato
 
-Illustrated below is the HTTP/2 network stack on the left and the QUIC network
-stack on the right, when used as HTTP transport.
+Ilustrado a baixo, na esquerda está o network stack do HTTP/2 e o QUIC está a direita
+quando é usado como protocolo de transporte HTTP.
 
 ![HTTP/3 over QUIC stack overview](../images/quic-stack.png)
